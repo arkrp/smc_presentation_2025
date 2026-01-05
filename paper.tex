@@ -1,18 +1,24 @@
+%section-start setup
 \documentclass{beamer}
-\usepackage{graphicx}
-\usepackage[backend=biber]{biblatex}
-\addbibresource{refs.bib}
-
-%section-start preamble
+%section-start declare document information!
 \title[SMC Generation]{Sequential Monte Carlo for Constrained Generation}
 \subtitle{An Application of Generative Models}
 \author{Hannah Nelson}
 \institute{University of California, Santa Barbara}
 \date{2025}
 %section-end
-
+%section-start load packages!
+\usepackage{graphicx}
+\usepackage[backend=biber]{biblatex}
+\usepackage{xcolor}
+\usepackage{soul} % use the package named soul by Melchior Franz
+%section-end
+%section-start add bibliography
+\addbibresource{refs.bib}
+%section-end
+%section-end
+%section-start document
 \begin{document}
-
 %section-start
 \begin{frame}
 \frametitle{}
@@ -31,11 +37,16 @@
     \begin{itemize}
         \item The Problem: Contstrained Generation
         \item What is Sequential Monte Carlo?
+            \begin{itemize}
+                \item Importance Resampling
+                \item Repeated Importance Sampling
+            \end{itemize}
         \item Task Adaptation
             \begin{itemize}
                 \item Feynman Kac Diffusion Steering (FKDS)
                 \item Sequentially Ordered SMC (SOSMC)
                 \item LLM Probabilistic Programming (LLaMPPS)
+                \item Probabilistic Planning with SMC
             \end{itemize}
     \end{itemize}
 \end{frame}
@@ -43,7 +54,7 @@
 %section-start the problem
 \begin{frame}
 \frametitle{The Problem: Constrained Generation}
-    How do we?
+    Imagine we want to:
     \begin{itemize}
         \item Generate an image which fits a description.
         \item Fill in a blank in text.
@@ -72,7 +83,6 @@
                 \item Greedy Setpwise Generation
             \end{itemize}
         \end{column}
-
         % --- Column 2 ---
         \begin{column}{0.3\textwidth}
             \textbf{Conditional Based}
@@ -80,10 +90,10 @@
                 \item Importance Sample
                 \item Monte Carlo Markov Chain
                 \item Classifier Free Guidance
-                \item Sequential Monte Carlo
+                \item
+                    \hl{Sequential Monte Carlo}
             \end{itemize}
         \end{column}
-
         % --- Column 3 ---
         \begin{column}{0.3\textwidth}
             \textbf{Hueristic Based}
@@ -95,6 +105,12 @@
             \end{itemize}
         \end{column}
     \end{columns}
+\end{frame}
+%section-end
+%section-start we want smc
+\begin{frame}
+\frametitle{We Want SMC Because}
+%TODO
 \end{frame}
 %section-end
 %section-start importance resampling
@@ -147,7 +163,6 @@ The difficulty: Classifier models cannot give accurate scores on partially gener
     \printbibliography
 \end{frame}
 %section-end
-
 % TODO make slides for each paper with (problem, difficulty, solution)
-
 \end{document}
+%section-end
