@@ -19,12 +19,6 @@
 %section-end
 %section-start document
 \begin{document}
-%section-start
-\begin{frame}
-\frametitle{}
-%TODO
-\end{frame}
-%section-end
 %section-start titlepage
 \begin{frame}
 \titlepage
@@ -66,8 +60,13 @@
 %section-end
 %section-start visualizations of the problem.
 \begin{frame}
-\frametitle{The problem: Visualizations}
-% TODO
+\frametitle{The Problem: Visualizations} % TODO
+    \includegraphics[totalheight=3cm]{resources/infilling.png}
+    \footnote{\textcite{lew2023sequentialmontecarlosteering}}
+    \includegraphics[totalheight=3cm]{resources/tree_growth.png}
+    \footnote{\textcite{10.1145/2766895}}
+    \includegraphics[totalheight=3.5cm]{resources/text_to_image.png}
+    \footnote{\textcite{singhal2025generalframeworkinferencetimescaling}}
 \end{frame}
 %section-end
 %section-start the approaches
@@ -129,9 +128,10 @@
 \begin{frame}
 \frametitle{Feynman Kac Diffusion Steering}
 % TODO this slide
-The paper: TODO
-The problem: Generate an image which fits a satisfies a classification.
-The difficulty: Classifier models cannot give accurate scores on partially generated images.
+The Paper:
+    \citetitle{singhal2025generalframeworkinferencetimescaling}
+The Problem: Generate an image which fits a satisfies a classification.
+The Difficulty: Classifier models cannot give accurate scores on partially generated images.
 \end{frame}
 %section-end
 %section-start sosmc
@@ -161,6 +161,12 @@ The difficulty: Classifier models cannot give accurate scores on partially gener
     \cite{10.1145/2766895}
     \cite{lew2023sequentialmontecarlosteering}
     \printbibliography
+\end{frame}
+%section-end
+%section-start
+\begin{frame}
+\frametitle{}
+%TODO
 \end{frame}
 %section-end
 % TODO make slides for each paper with (problem, difficulty, solution)
