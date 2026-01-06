@@ -41,7 +41,6 @@
 %section-start overview
 \begin{frame}
 \frametitle{Overview}
-%TODO make the overview last.
     \begin{itemize}
         \item The Problem: Contstrained Generation
         \item What is Sequential Monte Carlo?
@@ -54,11 +53,11 @@
                 \item Feynman Kac Diffusion Steering (FKDS)
                 \item Sequentially Ordered SMC (SOSMC)
                 \item LLM Probabilistic Programming (LLaMPPS)
-                \item Probabilistic Planning with SMC
             \end{itemize}
     \end{itemize}
 \end{frame}
 %section-end
+%section-start what is the problem?
 %section-start the problem
 \begin{frame}
 \frametitle{The Problem: Constrained Generation}
@@ -67,14 +66,13 @@
         \item Generate an image which fits a description.
         \item Fill in a blank in text.
         \item Make a tree which doesn't intersect objects.
-        \item Find a sequence of actions which yeilds a reward.
     \end{itemize}
     We need to generate a \textbf{solution} which obeys a \textbf{constraint}
 \end{frame}
 %section-end
 %section-start visualizations of the problem.
 \begin{frame}
-\frametitle{The Problem: Visualizations} % TODO
+\frametitle{The Problem: Visualizations}
     \includegraphics[totalheight=3cm]{resources/infilling.png}
     \footnote{\textcite{lew2023sequentialmontecarlosteering}}
     \includegraphics[totalheight=3cm]{resources/tree_growth.png}
@@ -84,7 +82,7 @@
 \end{frame}
 %section-end
 %section-start the approaches
-\begin{frame}{There are many approaches!}
+\begin{frame}{The Problem: Possible Approaches}
     \begin{columns}[t] % [t] aligns content to the top
         % --- Column 1 ---
         \begin{column}{0.3\textwidth}
@@ -120,14 +118,16 @@
     \end{columns}
 \end{frame}
 %section-end
+%section-end
+%section-start what is smc?
 %section-start we want smc
 \begin{frame}
 \frametitle{We Want SMC Because}
-%TODO
     \begin{itemize}
         \item Sample Diversity
         \item Speed
         \item Reduced Variance
+        \item Known Asemptotic Behavior
     \end{itemize}
 \end{frame}
 %section-end
@@ -143,6 +143,8 @@
     \includegraphics[totalheight=8cm]{resources/smc_as_iterated_importance_sampling.png}
 \end{frame}
 %section-end
+%section-end
+%section-start what are the examples?
 %section-start fkds
 \begin{frame}
 \frametitle{Feynman Kac Diffusion Steering}
@@ -161,7 +163,6 @@
 %section-start fkds approach
 \begin{frame}
 \frametitle{FKDS: Approach}
-%TODO make solution slide for the FKDS
 1. Identify the constraint a valid solution must solve:
 
     $$\prod_{t=T}^0G_t(x_T,\dots,x_t,c)=exp(\lambda r(x_0,c))$$
@@ -174,7 +175,7 @@
 
     $$r_\phi(x_t,c) = r(\mathbb{E}[x_t|x_0],c) \text{ or trained objective}$$
 
-This generates better images than classical CFG!
+    This generates empirically better label matching images than \textbf{classifier free guidance (CFG)}!
 \end{frame}
 %section-end
 %section-start sosmc
@@ -185,7 +186,7 @@ This generates better images than classical CFG!
             \item[The Paper:]
                 \citetitle{10.1145/2766895}
             \item[The Problem:]
-                3d Generation uses a branching generation structure. SMC requires a flat generation order.
+                3d Generation uses a higherarchial recursive generation. SMC requires a flat generation order.
             \item[The Difficulty:]
                 Naively flattening the structure gets poor results due to early steps potentially making later steps nearly impossible.
         \end{itemize}
@@ -202,6 +203,9 @@ orderings which take early steps that make later steps impossible now get elimin
 \newline
 \newline
 By randomizing the order, we execute in all orders and then get rid of the bad ones.
+\newline
+\newline
+    SOSMC is noted to match the performance of \textbf{metropolis hastings} with lower compute usage in 3d generation examples.
 \end{frame}
 %section-end
 %section-start LLaMPPL
@@ -219,11 +223,9 @@ By randomizing the order, we execute in all orders and then get rid of the bad o
     }
 \end{frame}
 %section-end
-%TODO further explain the difficulty LLaMPPL
 %section-start LLaMPPL approach
 \begin{frame}
 \frametitle{LLaMPPL: Approach}
-%TODO make solution slide for the LLaMPPL
 To reduce duplicate particles:
     \begin{itemize}
         \item
@@ -236,40 +238,36 @@ Propose a length with a geometric distribution.
         \item
 Counteract the bias with reweighting.
     \end{itemize}
+LLaMPPL allows higher sample diversity than \textbf{beam search}, while having similar complexity.
 
 \end{frame}
 %section-end
-%section-start PP-SMC
+%section-end
+%section-start in summary
 \begin{frame}
-\frametitle{Probabilistic Planning with SMC}
-    \shiftleft{
-        \begin{itemize}
-            \item[The Paper:]
-                \citetitle{piche2018probabilistic}
-            \item[Aim:]
-                Control as inference; Good plans are probable plans with high reward,
-            \item[Key Idea:]
-                SMC can find probable plans with high reward.
-        \end{itemize}
-    }
+\frametitle{In Summary}
+    \begin{itemize}
+        \item Sequential Monte Carlo can guide generation
+        \item The papers adapt it to:
+            \begin{itemize}
+                \item Approximate intermediate rewards
+                \item Branching samplers
+                \item Discreet token sequences
+                \item Variable length generations
+            \end{itemize}
+        \item It has benefits:
+            \begin{itemize}
+                \item Adheres to guidance well
+                \item Maintains sample diversity
+                \item Lower sample variance
+            \end{itemize}
+    \end{itemize}
 \end{frame}
 %section-end
-%TODO make a slide showing the results of PP-SMC
 %section-start Citations
 \begin{frame}
-\frametitle{}
-%TODO
-    \cite{singhal2025generalframeworkinferencetimescaling}
-    \cite{piche2018probabilistic}
-    \cite{10.1145/2766895}
-    \cite{lew2023sequentialmontecarlosteering}
+\frametitle{Citations}
     \printbibliography
-\end{frame}
-%section-end
-%section-start
-\begin{frame}
-\frametitle{}
-%TODO
 \end{frame}
 %section-end
 \end{document}
