@@ -49,7 +49,7 @@
                 \item Importance Resampling
                 \item Repeated Importance Sampling
             \end{itemize}
-        \item Task Adaptation
+        \item A Selection of Solutions
             \begin{itemize}
                 \item Feynman Kac Diffusion Steering (FKDS)
                 \item Sequentially Ordered SMC (SOSMC)
@@ -141,7 +141,6 @@
 %section-start fkds
 \begin{frame}
 \frametitle{Feynman Kac Diffusion Steering}
-% TODO this slide
     \shiftleft{
         \begin{itemize}
             \item[The Paper:]
@@ -154,24 +153,72 @@
     }
 \end{frame}
 %section-end
+%section-start
+\begin{frame}
+\frametitle{FKDS: Approach}
+%TODO make solution slide for the FKDS
+1. Identify the constraint a valid solution must solve:
+
+2. Make solutions which weigh themselves using approximate rewards obeying constraint:
+
+3. Select an appropriate approximate reward.
+\end{frame}
+%section-end
 %section-start sosmc
 \begin{frame}
     \frametitle{Stochastically Ordered Sequential Monte Carlo (SOSMC)}
+    %TODO change out the statements to match SOSMC
+    \shiftleft{
+        \begin{itemize}
+            \item[The Paper:]
+                \citetitle{10.1145/2766895}
+            \item[The Problem:]
+                3d Generation uses a branching generation structure. SMC requires a flat generation order.
+            \item[The Difficulty:]
+                Naively flattening the structure gets poor results due to generation order.
+        \end{itemize}
+    }
 %TODO
 \end{frame}
 %section-end
+%TODO make solution slide for the SOSMC
 %section-start LLaMPPL
 \begin{frame}
-\frametitle{Language Model Probabalistic Programing}
+    \frametitle{Language Model Probabalistic Programing (LLaMPPL)}
+    %TODO change out the statements to match LLaMPPL
+    \shiftleft{
+        \begin{itemize}
+            \item[The Paper:]
+                \citetitle{lew2023sequentialmontecarlosteering}
+            \item[The Problem:]
+                We need our models to fill in blanks in sentences.
+            \item[The Difficulty:]
+                Our blanks have are of unknown length.
+        \end{itemize}
+    }
 %TODO
 \end{frame}
 %section-end
+%TODO further explain the difficulty LLaMPPL
+%TODO make solution slide for the LLaMPPL
 %section-start PP-SMC
 \begin{frame}
 \frametitle{Probabilistic Planning with SMC}
+    %TODO change out the statements to match PP-SMC
+    \shiftleft{
+        \begin{itemize}
+            \item[The Paper:]
+                \citetitle{piche2018probabilistic}
+            \item[Aim:]
+                Control as inference; Good plans are probable plans with high reward,
+            \item[Key Idea:]
+                SMC can find probable plans with high reward.
+        \end{itemize}
+    }
 %TODO
 \end{frame}
 %section-end
+%TODO make a slide showing the results of PP-SMC
 %section-start Citations
 \begin{frame}
 \frametitle{}
@@ -189,6 +236,5 @@
 %TODO
 \end{frame}
 %section-end
-% TODO make slides for each paper with (problem, difficulty, solution)
 \end{document}
 %section-end
