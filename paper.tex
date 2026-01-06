@@ -124,6 +124,11 @@
 \begin{frame}
 \frametitle{We Want SMC Because}
 %TODO
+    \begin{itemize}
+        \item Sample Diversity
+        \item Speed
+        \item Reduced Variance
+    \end{itemize}
 \end{frame}
 %section-end
 %section-start importance resampling
@@ -153,21 +158,28 @@
     }
 \end{frame}
 %section-end
-%section-start
+%section-start fkds approach
 \begin{frame}
 \frametitle{FKDS: Approach}
 %TODO make solution slide for the FKDS
 1. Identify the constraint a valid solution must solve:
 
+    $$\prod_{t=T}^0G_t(x_T,\dots,x_t,c)=exp(\lambda r(x_0,c))$$
+
 2. Make solutions which weigh themselves using approximate rewards obeying constraint:
 
+    $$G_t(x_T,\dots,x_t,c)=exp(\lambda (r_\phi(x_t,c)-r_\phi(x_{t+1},c)))$$
+
 3. Select an appropriate approximate reward.
+
+    $$r_\phi(x_t,c) = r(\mathbb{E}[x_t|x_0],c) \text{ or trained objective}$$
+
+This generates better images than classical CFG!
 \end{frame}
 %section-end
 %section-start sosmc
 \begin{frame}
     \frametitle{Stochastically Ordered Sequential Monte Carlo (SOSMC)}
-    %TODO change out the statements to match SOSMC
     \shiftleft{
         \begin{itemize}
             \item[The Paper:]
@@ -175,17 +187,26 @@
             \item[The Problem:]
                 3d Generation uses a branching generation structure. SMC requires a flat generation order.
             \item[The Difficulty:]
-                Naively flattening the structure gets poor results due to generation order.
+                Naively flattening the structure gets poor results due to early steps potentially making later steps nearly impossible.
         \end{itemize}
     }
-%TODO
 \end{frame}
 %section-end
-%TODO make solution slide for the SOSMC
+%section-start sosmc approach
+\begin{frame}
+\frametitle{SOSMC: Approach}
+The solution taken: Randomize the order!
+\newline
+\newline
+orderings which take early steps that make later steps impossible now get eliminated.
+\newline
+\newline
+By randomizing the order, we execute in all orders and then get rid of the bad ones.
+\end{frame}
+%section-end
 %section-start LLaMPPL
 \begin{frame}
     \frametitle{Language Model Probabalistic Programing (LLaMPPL)}
-    %TODO change out the statements to match LLaMPPL
     \shiftleft{
         \begin{itemize}
             \item[The Paper:]
@@ -193,18 +214,34 @@
             \item[The Problem:]
                 We need our models to fill in blanks in sentences.
             \item[The Difficulty:]
-                Our blanks have are of unknown length.
+                Our blanks have are of unknown length. Since language models are discreet, duplicate particles will exist.
         \end{itemize}
     }
-%TODO
 \end{frame}
 %section-end
 %TODO further explain the difficulty LLaMPPL
+%section-start LLaMPPL approach
+\begin{frame}
+\frametitle{LLaMPPL: Approach}
 %TODO make solution slide for the LLaMPPL
+To reduce duplicate particles:
+    \begin{itemize}
+        \item
+    Turn the resampling into a upsampling step followed by a no replacement downsampling step.
+    \end{itemize}
+For variable length blanks:
+    \begin{itemize}
+        \item
+Propose a length with a geometric distribution.
+        \item
+Counteract the bias with reweighting.
+    \end{itemize}
+
+\end{frame}
+%section-end
 %section-start PP-SMC
 \begin{frame}
 \frametitle{Probabilistic Planning with SMC}
-    %TODO change out the statements to match PP-SMC
     \shiftleft{
         \begin{itemize}
             \item[The Paper:]
@@ -215,7 +252,6 @@
                 SMC can find probable plans with high reward.
         \end{itemize}
     }
-%TODO
 \end{frame}
 %section-end
 %TODO make a slide showing the results of PP-SMC
