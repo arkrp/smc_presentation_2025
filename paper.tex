@@ -16,7 +16,20 @@
 %section-start add bibliography
 \addbibresource{refs.bib}
 %section-end
-\newcommand\beee[1]{bzz #1}
+%section-start define macros
+%section-start shiftleft
+% A simple command to shift stuff left. meant to shift itemizes left because beamer doesn't play well with left margins for some reason.
+\newcommand\shiftleft[1]{
+    \begin{columns}
+        \begin{column}{0.1\textwidth}
+        \end{column}
+        \begin{column}{0.9\textwidth}
+            #1
+        \end{column}
+    \end{columns}
+}
+%section-end
+%section-end
 %section-end
 %section-start document
 \begin{document}
@@ -129,21 +142,16 @@
 \begin{frame}
 \frametitle{Feynman Kac Diffusion Steering}
 % TODO this slide
-    \begin{columns}
-        \begin{column}{0.1\textwidth}
-        \end{column}
-        \begin{column}{0.9\textwidth}
-            \begin{itemize}
-                \setlength{\leftmargini}{10em}
-                \item[The Paper:]
-                    \citetitle{singhal2025generalframeworkinferencetimescaling}
-                \item[The Problem:]
-                    Generate an image which fits a satisfies a classification.
-                \item[The Difficulty:]
-                    Classifier models cannot give accurate scores on partially generated images.
-            \end{itemize}
-        \end{column}
-    \end{columns}
+    \shiftleft{
+        \begin{itemize}
+            \item[The Paper:]
+                \citetitle{singhal2025generalframeworkinferencetimescaling}
+            \item[The Problem:]
+                Generate an image which fits a satisfies a classification.
+            \item[The Difficulty:]
+                Classifier models cannot give accurate scores on partially generated images.
+        \end{itemize}
+    }
 \end{frame}
 %section-end
 %section-start sosmc
@@ -173,18 +181,6 @@
     \cite{10.1145/2766895}
     \cite{lew2023sequentialmontecarlosteering}
     \printbibliography
-\end{frame}
-%section-end
-%section-start
-\begin{frame}
-\frametitle{}
-    \beee{hello}
-    \beee{
-        \begin{itemize}
-            \item[hello]
-        \end{itemize}
-    }
-%TODO
 \end{frame}
 %section-end
 %section-start
